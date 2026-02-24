@@ -32,6 +32,46 @@ def summarize_text(text, sentences=3):
 def count_words(text):
     return len(re.findall(r'\w+', text))
 
+@app.route('/', methods=['GET'])
+def index():
+    html = """<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Text Summarizer AI - API Service by Rikko AI Automation</title>
+<style>
+body{font-family:Arial,sans-serif;max-width:900px;margin:0 auto;padding:40px 20px;color:#333;background:#f9f9f9}
+h1{color:#2c3e50;font-size:2.2em}h2{color:#34495e}
+.badge{background:#27ae60;color:#fff;padding:4px 12px;border-radius:20px;font-size:.85em}
+.endpoint{background:#fff;border:1px solid #ddd;border-radius:8px;padding:16px;margin:12px 0}
+code{background:#ecf0f1;padding:2px 6px;border-radius:4px;font-family:monospace}
+a{color:#2980b9}footer{margin-top:60px;color:#999;font-size:.85em}
+</style>
+</head>
+<body>
+<h1>🤖 Text Summarizer AI <span class="badge">API v1.0</span></h1>
+<p><strong>Professional AI-powered text summarization API</strong> by Rikko AI Automation. Instantly condense long articles, reports, and documents into concise summaries.</p>
+<h2>🚀 Features</h2>
+<ul>
+<li>Extractive AI summarization</li>
+<li>Adjustable summary length (number of sentences)</li>
+<li>Compression ratio metrics</li>
+<li>REST API — easy to integrate in any app</li>
+</ul>
+<h2>📡 Endpoints</h2>
+<div class="endpoint"><strong>POST</strong> <code>/summarize</code> — Summarize text</div>
+<div class="endpoint"><strong>GET</strong> <code>/health</code> — API health check</div>
+<h2>🔑 Get API Access</h2>
+<p>Available on <a href="https://rapidapi.com/joey99umanito/api/text-summarizer-ai3" target="_blank">RapidAPI Marketplace</a>. Free tier available!</p>
+<h2>📬 Contact</h2>
+<p>Email: <a href="mailto:joey99umanito@gmail.com">joey99umanito@gmail.com</a></p>
+<footer>© 2025 Rikko AI Automation. All rights reserved. | Professional AI automation services.</footer>
+</body>
+</html>"""
+    from flask import Response
+    return Response(html, mimetype='text/html')
+
 @app.route('/summarize', methods=['POST'])
 def summarize():
     data = request.get_json()
